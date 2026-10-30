@@ -1,16 +1,18 @@
 
-import { View, Text } from "react-native";
+import DishCard from "@/components/DishCard";
+import RestaurantHeader from "@/components/RestaurantHeader";
+import dishes from "@/data/dishes";
+import { FlatList, Image, ScrollView, Text, View } from "react-native";
 
 export default function HomeScreen() {
-  return (
-    <View className="flex-1 items-center justify-center bg-slate-900">
-      <Text className="text-2xl font-bold text-white">
-        NativeWind funcionando!
-      </Text>
-
-      <Text className="mt-2 text-base text-green-400">
-        Configuração concluída.
-      </Text>
-    </View>
-  );
+    return (
+        <FlatList
+            className="flex-1 bg-[#FAF8F5]"
+            contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 30 }}
+            data={dishes}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <DishCard dish={item} />}
+            ListHeaderComponent={<RestaurantHeader />}
+        />
+    );
 }
